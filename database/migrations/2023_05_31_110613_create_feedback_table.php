@@ -9,12 +9,13 @@ class CreateFeedbackTable extends Migration
     public function up()
     {
         Schema::create('feedback', function (Blueprint $table) {
-            $table->increments('feedback_id');
-            $table->integer('customer_id')->unsigned();
+            $table->id('feedback_id');
+            $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('user_id')->on('user');
-            $table->integer('figure_id')->unsigned();
+            $table->unsignedBigInteger('figure_id');
             $table->foreign('figure_id')->references('figure_id')->on('figure');
-            $table->text('comment');
+            $table->string('comment');
+            $table->timestamps();
         });
     }
 
