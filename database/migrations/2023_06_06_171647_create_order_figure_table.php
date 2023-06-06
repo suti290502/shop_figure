@@ -24,3 +24,5 @@ class CreateOrderFigureTable extends Migration
         Schema::dropIfExists('order_figure');
     }
 }
+
+
