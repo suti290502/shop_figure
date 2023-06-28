@@ -9,11 +9,8 @@ class Figure extends Model
 {
     protected $primaryKey = 'figure_id';
     protected $table = 'figure'; // Tên bảng tương ứng với Model  
-    protected $fillable = ['seller_id', 'category', 'name', 'description', 'price', 'image', 'quantity'];
-    public function seller()
-    {
-        return $this->belongsTo(User::class, 'seller_id');
-    }
+    protected $fillable = ['category', 'name', 'description', 'price', 'image', 'quantity'];
+
 
     public function category()
     {

@@ -2,88 +2,71 @@
 
 namespace App\Http\Controllers;
 use App\Models\Category;
-use App\Models\Figure;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
-    {
-        $categories = Category::latest()->paginate(5);
-        return view('category.index', compact('categories'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
-    }
-    
-    public function create(){
-        return view('category.create');
+    public function Categoryindex(){
+        $category=Category::all();
+        return view('admin.page.listCategory', compact('category'));
     }
 
-    public function store(Request $request)
-    {
-        if ($request->isMethod('POST')) {
-            $validator = Validator::make($request->all(), [
-                'name' => 'required',
+    public function getAddCategory(){
+        return view('admin.page.addCategory');
+    }
+
+    public function postAddCategory(Request $request){
+        if($request->isMethod('POST')){
+            $validator=Validator::make($request->all(),[
+                'name'=>'required',
+               
             ]);
 
-            if ($validator->fails()) {
+            if($validator->fails()){
                 return redirect()->back()
-                    ->withErrors($validator)
-                    ->withInput();
+                ->withErrors($validator)
+                ->withInput();
             }
 
-            $newCategory = new Category();
-            $newCategory->name = $request->name;
-            $newCategory->save();
-            return redirect()->route('category.index')
-                ->with('success', 'Category created successfully.');
-        }
-    }
-    
-    public function show($id)
-    {
-        $category = Category::find($id);
-        return view('category.show', ['category' => $category]);
-    }
-
-    public function edit($id)
-    {
-        $category = Category::find($id);
-        return view('category.edit', ['category' => $category]);
-    }
-
-    public function update(Request $request, $id)
-    {
-        if ($request->isMethod('POST')) {
-            $validator = Validator::make($request->all(), [
-                'name' => 'required',
-                
-            ]);
-            if ($validator->fails()) {
-                return redirect()->back()
-                    ->withErrors($validator)
-                    ->withInput();
-            }
-            $category = Category::find($id);
-            if ($category != null) {
-                $category->name = $request->name;
-              
-                $category->save();
-                return redirect()->route('category.index')
-                    ->with('success', 'Category updated successfully');
-            } else {
-                    return redirect()->route('category.index')
-                    ->with('Error', 'Category not update');
-                }
+            $category=new Category;
+            $category->name=$request->name;
+            $category->save();
+            return redirect()->route('admin.category.index')->with('success','Add new Category Successfully!');
         }
     }
 
-    public function destroy($id)
-    {
-        $category = Category::find($id);
+    public function getEditCategory($category_id){
+        $data['cate']=Category::find($category_id);
+        return view('admin.page.editCategory',$data);
+    }
+
+    public function postEditCategory(Request $request,$category_id){
+        if($request->isMethod('POST')){
+            $validator=Validator::make($request->all(),[
+                'name'=>'required',
+               
+            ]);
+
+            if($validator->fails()){
+                return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+            }
+
+            $category=Category::find($category_id);
+            $category->name=$request->name;
+          
+            $category->save();
+            return redirect()->route('admin.category.index')->with('success','Edit the Category Successfully!');
+        }
+    }
+
+    public function deleteCategory($category_id){
+        $category=Category::find($category_id);
         $category->delete();
-        return redirect()->route('category.index')
-            ->with('success', 'Category deleted successfully');
+        return back();
     }
 }

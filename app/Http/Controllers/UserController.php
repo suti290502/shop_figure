@@ -1,53 +1,50 @@
 <?php
 
-
-
 namespace App\Http\Controllers;
 
-use GrahamCampbell\ResultType\Success;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Usermanagement;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+use Illuminate\Http\Request;
 
+class UserController extends Controller
 {
-    public function getAllUser() {
-        $user = User::paginate(10); // Sửa lại tên class User ở đây
-        return view('listUser', compact('user'));
+    public function Usersindex(){
+        $user=Usermanagement::all();
+        return view('admin.page.listUsers', compact('user'));
     }
 
-    public function postLogin(Request $request){
-        $arr = ['username' => $request->username, 'password' => $request->password];
-        if(Auth::attempt($arr)){
-            return redirect()->route('listUser')->with('message', 'Thành công');
-        } else{
-            return redirect()->route('getLogin')->with('message', 'That bai');
+    public function getEditUsers($id){
+        $data['user']=Usermanagement::find($id);
+        return view('admin.page.editUsers',$data);
+    }
+
+    public function postEditUsers(Request $request,$id){
+        if($request->isMethod('POST')){
+            $validator=Validator::make($request->all(),[
+                'password'=>'required',
+            ]);
+
+            if($validator->fails()){
+                return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+            }
+
+            $user=Usermanagement::find($id);
+            $user->password=Hash::make($request->password);
+            $user->save();
+            return redirect()->route('admin.user.index')->with('success','Edit password Successfully!');
         }
     }
 
-    public function destroy($user_id)
-    {
-        $user_id = User::find($user_id);
-        $user_id->delete();
-        return redirect()->route('listUser')
-            ->with('success', 'Category deleted successfully');
+    public function deleteUsers($id){
+        $figure=Usermanagement::find($id);
+        $figure->delete();
+        return back();
     }
-
-    public function edit($user_id)
-    {
-        $user = User::paginate(10);
-        return view('user.edit', ['user' => $user]);
-    }
-
-    
-
-    public function showForm()
-    {
-        $sellers = User::pluck('username', 'user_id');
-
-        return view('form', ['sellers' => $sellers]);
-    }
-
 }

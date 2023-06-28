@@ -55,7 +55,6 @@
         <th>No</th>
         <th>Name</th>
         <th>Description</th>
-        <th>Seller</th>
         <th>Category</th>
         <th>Price</th>
         <th>Image</th>
@@ -72,8 +71,7 @@
         <td>{{ $key + 1 }}</td>
         <td>{{ $figure->name }}</td>
         <td>{{ $figure->description }}</td>
-        <td>{{ $figure->seller->username }}</td>
-        <td>{{ $figure->category->name }}</td>
+        <td>{{ $figure->category }}</td>
         <td>{{ $figure->price }}</td>
         <td><img src="{{ asset('image/figure/' . $figure->image) }}" alt="" border=3 height=150 width=150>
         </td>

@@ -95,7 +95,7 @@
            
             <button type="submit">Register</button> 
             <button> <a href="{{asset('login')}}" class="home-btn">Login</a></button>
-         
+          
     </div>
 </body>
 </html>

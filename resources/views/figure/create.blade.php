@@ -70,17 +70,7 @@
                 </div>
             </div>
     
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Seller:</strong>
-                    <select name="seller_id" class="form-control">
-                        @foreach ($sellers as $user)
-                            <option value="{{ $seller->user_id }}">{{ $seller->username }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-    
+        
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Category:</strong>
