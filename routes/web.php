@@ -53,6 +53,7 @@ Route::group(['prefix'=>'figure'], function(){
     Route::get('edit/{id}',[FigureController::class,'getEditFigure']);
     Route::post('edit/{id}',[FigureController::class,'postEditFigure'])->name('admin.figure.edit');
     Route::get('delete/{id}',[FigureController::class,'deleteFigure']);
+   
 });
 
 Route::group(['prefix'=>'user'], function(){
@@ -64,6 +65,9 @@ Route::group(['prefix'=>'user'], function(){
 
 Route::group(['prefix'=>'homepage'], function(){
     Route::get('/',[HomepageController::class,'homepage'])->name('client.page.index');
+});
+Route::group(['prefix'=>'home'], function(){
+    Route::get('/',[HomepageController::class,'home'])->name('customer.page.index');
 });
 
 Route::group(['prefix'=>'signin'], function(){
@@ -89,8 +93,21 @@ Route::group(['prefix'=>'figures'], function(){
 });
 
 
+Route::get('/figure/index', [FigureController::class, 'index'])->name('figure.index');
+Route::get('/figure/create', [FigureController::class, 'create'])->name('figure.create');
+Route::get('/figure/delete{id}', [FigureController::class, 'destroy'])->name('figure.destroy');
+Route::get('/figure/edit{id}', [FigureController::class, 'edit'])->name('figure.edit');
+Route::post('/figure/update{id}', [FigureController::class, 'update'])->name('figure.update');
+Route::get('/figure/show{id}', [FigureController::class, 'show'])->name('figure.show');
+Route::post('/figure/store', [FigureController::class, 'store'])->name('figure.store');;
 
 
 Route::group(['prefix'=>'new'], function(){
     Route::get('/',[NewController::class,'new'])->name('client.page.new');
 });
+
+// cart
+Route::get('cart', [CartController::class, 'cart'])->name('customer.page.cart');
+Route::get('add-to-cart/{cart_id}', [CartController::class, 'addToCart'])->name('add_to_cart');
+Route::patch('update-cart', [CartController::class, 'update'])->name('update_cart');
+Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove_from_cart');

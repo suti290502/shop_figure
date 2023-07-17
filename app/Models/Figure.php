@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Figure extends Model
 {
     protected $primaryKey = 'figure_id';
-    protected $table = 'figure'; // Tên bảng tương ứng với Model  
+    protected $table = 'figure';  
     protected $fillable = ['category', 'name', 'description', 'price', 'image', 'quantity'];
 
 

@@ -28,19 +28,32 @@ class SigninController extends Controller
                 ->withErrors($validator)
                 ->withInput();
             }
+ 
+            $credentials = $request->only('email', 'password');
 
-            $remember=$request->remember;
-            if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
-                if(Auth::user()->role==2){
-                    return redirect()->route('client.page.index')->with('login','Login Successfully');
-                }
-                else{
+            if (Auth::attempt($credentials)) {
+                $user = Auth::user();
+                Auth::login($user); // Lưu thông tin người dùng vào session
+
+                if ($user->role== 1) {
+                    $request->session()->put('user', Auth::user());
+                
+                } elseif ($user->role == 2) {
+                    // Xử lý cho role 2
+                    $request->session()->put('user', Auth::user());
+                    return redirect()->route('customer.page.index')->with('login','Login Successfully');
+                } elseif ($user->role == 3) {
+                    $request->session()->put('user', Auth::user());
                     return redirect()->route('admin.all.index')->with('login','Login as Admin Successfully!');
                 }
             }
             else{
-                return redirect()->route('client.page.signin')->with('fail','Login Failed!');
+                    return redirect()->route('client.page.signin')->with('fail','Login Failed!');
             }
         }
     }
+
+       
+
+   
 }

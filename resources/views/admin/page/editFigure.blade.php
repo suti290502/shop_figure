@@ -3,7 +3,7 @@
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
       <div class="col-lg-12">
-        <h1 class="page-header">Add Figure</h1>
+        <h1 class="page-header">Edit Figure</h1>
         <br>
       </div>
     </div><!--/.row-->
@@ -39,7 +39,7 @@
                                 placeholder="Price">
                                 <br>
                                 <label>Description:</label>
-                                <textarea class="form-control" name="description"
+                                <textarea class="form-control" name="description" value="{{ $figure->description }}"
                                 style="width: 140%" placeholder="Descrption"></textarea>
                                 <br>
                                 <label>Image:</label>
@@ -51,6 +51,10 @@
                                         <option value="{{ $category->category_id }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
+                                <br>
+                                <label>Quantity</label>
+                                <input type="text" class="form-control" name="quantity" value="{{ $figure->quantity }}"
+                                placeholder="Quantity">
                                 <br>
                             </div>
                         </fieldset>

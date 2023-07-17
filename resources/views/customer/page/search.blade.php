@@ -1,4 +1,4 @@
-@extends('client.layout.master')
+@extends('customer.layout.master')
 @section('content')
 
 <div class="banner" style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515),  padding: 20px; background-clip: padding-box;">

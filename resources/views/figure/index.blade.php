@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <style>
-    </style>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Document</title>
-</head>
-<body>
-    @extends('figure.layout')
+
+@extends('figure.layout.master')
     @section('content')
 
 <div class="row">
@@ -28,11 +18,7 @@
         </div>
 
 
-        <div class="pull-left">
-
-            <a class="btn btn-success" href="{{ route('category.index') }}"> Management Category</a>
-
-        </div>
+        
 
     </div>
 
@@ -59,7 +45,7 @@
         <th>Price</th>
         <th>Image</th>
         <th>Quantity</th>
-        <th>Details</th>
+        
         <th>Action</th>
 
 
@@ -73,7 +59,7 @@
         <td>{{ $figure->description }}</td>
         <td>{{ $figure->category }}</td>
         <td>{{ $figure->price }}</td>
-        <td><img src="{{ asset('image/figure/' . $figure->image) }}" alt="" border=3 height=150 width=150>
+        <td> <img src="{{ url('public/image/'.$figure->image) }}" style="height: 200px; width: 150px">
         </td>
         <td>{{ $figure->quantity }}</td>
 
@@ -93,5 +79,4 @@
 
 </table>
 @endsection
-</body>
-</html>
+

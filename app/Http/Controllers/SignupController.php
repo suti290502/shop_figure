@@ -11,35 +11,23 @@ use App\Models\User;
 
 class SignupController extends Controller
 {
-    public function getSignup(){
+    public function getSignup()
+    {
         return view('client.page.signup');
     }
 
     public function postSignup(Request $request)
     {
-        if($request->isMethod('POST')){
-            $validator=validator::make($request->all(),[
-                'name'=>'required|min:6|max:1000',
-                'email'=>'required|email|max:100',
-                'password'=>'required|confirmed|max:16|min:6',
-            ]);
-
-            if($validator->fails()){
-                return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-            }
-            
-            $user=DB::table('users')->where('email',$request->email)->first();
-            if(!$user){
-                $user = new User();
-                $user->name = $request->name;
-                $user->email = $request->email;
+        $user = new User();
+                $user->username = $request->username;
                 $user->password = Hash::make($request->password);
-                $user->role=$request->role;
+                $user->email = $request->email;
+                $user->address = $request->address;
+                $user->phone_number = $request->phone_number;
+                $user->role = $request->role;
                 $user->save();
-                return redirect()->route('client.page.signin')->with('success','Signup Successfully!');
-            }
-        }
+
+                return redirect()->route('client.page.signin')->with('success', 'Signup Successful!');
+       
     }
 }

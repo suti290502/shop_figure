@@ -48,7 +48,7 @@
                     </div>
                     <div class="inputBx form-group">
                         <span>Role</span>
-                        <br>
+                        <br> 
                         <select class="inputBx form-group" name="role">
                             <option class="hidden" selected disabled>Select your role</option>
                             <option value="1">Seller</option>

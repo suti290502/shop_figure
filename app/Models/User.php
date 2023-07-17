@@ -50,4 +50,10 @@ class User extends Authenticatable
     ];
     protected $primaryKey = 'id';
     public $timestamps = false;
+
+    public function cart()
+{
+    return $this->hasMany(Cart::class, 'user_id');
+}
+
 }

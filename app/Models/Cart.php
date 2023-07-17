@@ -2,20 +2,22 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
-    protected $primaryKey = 'cart_id';
+    use HasFactory;
 
-    public function customer()
+    protected $fillable = ['user_id', 'figure_id', 'quantity'];
+
+    public function figure()
     {
-        return $this->belongsTo(User::class, 'customer_id');
+        return $this->belongsTo(Figure::class, 'figure_id');
     }
 
-    public function cartItem()
+    public function user()
     {
-        return $this->hasMany(CartItem::class, 'cart_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
-
