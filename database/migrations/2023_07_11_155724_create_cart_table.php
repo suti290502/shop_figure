@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateCartTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('cart', function (Blueprint $table) {
             $table->increments('cart_id');
             $table->integer('quantity');
-            $table->unsigned('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('user_id')->on('user');
             $table->timestamps();
         });

@@ -14,7 +14,7 @@ class CreateFigureTable extends Migration
             $table->foreign('category')->references('category_id')->on('category');
             $table->string('name');
             $table->text('description');
-            $table->int('price');
+            $table->integer('price');
             $table->string('image');
             $table->integer('quantity');
             $table->timestamps();

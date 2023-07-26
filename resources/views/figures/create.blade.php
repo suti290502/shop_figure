@@ -1,4 +1,4 @@
-@extends('figure.layout.master')
+@extends('figures.layout.master')
 @section('content')
 
 <div class="banner" style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/2.jpg'); padding: 20px; background-clip: padding-box;">
@@ -10,7 +10,7 @@
         <p>Hello , {{ session('user')->username }}</p>
     @endif
         <div class="buttons">
-            <a  href="{{ route('client.page.index') }}">Home </a>
+            <a  href="{{ route('seller.page.index') }}">Home </a>
         </div>
     </div>
 </div>

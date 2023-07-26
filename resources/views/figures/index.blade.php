@@ -1,6 +1,8 @@
 
-@extends('figure.layout.master')
+@extends('figures.layout.master')
+
     @section('content')
+    
 
 <div class="row">
 
@@ -14,13 +16,24 @@
         <br>
 
         <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('figure.create') }}"> Create New Figure</a>
+            <a class="btn btn-success" href="{{ route('figures.create') }}"> Create New Figure</a>
         </div>
 
 
         
 
     </div>
+  
+    
+             
+              
+              @if (session('user'))
+              <h1>Hello , {{ session('user')->username }}</h1>
+          @endif
+          <br><div class="buttons">
+                  <a  href="{{ route('seller.page.index') }}">Home </a>
+              </div>
+   
 
 </div>
 
@@ -55,23 +68,23 @@
     @foreach ($figures as $key => $figure)
     <tr>
         <td>{{ $key + 1 }}</td>
-        <td>{{ $figure->name }}</td>
-        <td>{{ $figure->description }}</td>
-        <td>{{ $figure->category }}</td>
-        <td>{{ $figure->price }}</td>
-        <td> <img src="{{ url('public/image/'.$figure->image) }}" style="height: 200px; width: 150px">
+        <td>{{ $figures->name }}</td>
+        <td>{{ $figures->description }}</td>
+        <td>{{ $figures->category }}</td>
+        <td>{{ $figures->price }}</td>
+        <td> <img src="{{ url('public/image/'.$figures->image) }}" style="height: 200px; width: 150px">
         </td>
         <td>{{ $figure->quantity }}</td>
 
         <td>
 
-            <form action="{{ route('figure.destroy', $figure->figure_id) }}" method="POST">
+            <form action="{{ route('figures.destroy', $figure->figure_id) }}" method="POST">
                 <a style="background-color: black;" class="btn btn-primary"
-                    href="{{ route('figure.show', $figure->figure_id) }}">Show</a>
+                    href="{{ route('figures.show', $figure->figure_id) }}">Show</a>
                 <a style="background-color: black;" class="btn btn-primary"
-                    href="{{ route('figure.edit', $figure->figure_id) }}">Edit</a>
+                    href="{{ route('figures.edit', $figure->figure_id) }}">Edit</a>
                 <a style="background-color: black;" class="btn btn-primary"
-                    href="{{ route('figure.destroy', $figure->figure_id) }}">Delete</a>
+                    href="{{ route('figures.destroy', $figure->figure_id) }}">Delete</a>
             </form>
         </td>
     </tr>

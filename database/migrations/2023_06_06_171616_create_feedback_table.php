@@ -10,8 +10,8 @@ class CreateFeedbackTable extends Migration
     {
         Schema::create('feedback', function (Blueprint $table) {
             $table->id('feedback_id');
-            $table->unsignedBigInteger('customer_id');
-            $table->foreign('customer_id')->references('user_id')->on('user');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('user_id')->on('user');
             $table->unsignedBigInteger('figure_id');
             $table->foreign('figure_id')->references('figure_id')->on('figure');
             $table->string('comment');

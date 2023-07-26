@@ -11,10 +11,18 @@ class HomepageController extends Controller
     public function homepage(){
         $homepage= Homepage::all();
         return view('client.page.index', compact('homepage'));
+        
     }
+
+    
     public function home(){
         $home= Homepage::all();
         return view('customer.page.index', compact('home'));
+    }
+    
+    public function homesell(){
+        $homesell= Homepage::all();
+        return view('seller.page.index', compact('homesell'));
     }
 
  

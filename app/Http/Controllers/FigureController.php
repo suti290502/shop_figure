@@ -135,68 +135,66 @@ class FigureController extends Controller
 
     
 
+
+
+
+
+    
+
     public function index()
     {
         $figures = Figure::latest()->paginate(5);
-        return view('figure.index', compact('figures'))
+        return view('figures.index', compact('figures'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
     public function create()
     {
         $categories = Category::all();
-        return view('figure.create', ['categories' => $categories]);
+        return view('figures.create', ['categories' => $categories]);
     }
     public function store(Request $request)
     {
         if ($request->isMethod('POST')) {
             $validator = Validator::make($request->all(), [
-
-                'name'=>'required',
-                    'description'=>'required',
-                    'price'=>'required',
-                    'image'=>'required|image|mimes:jpg,png,jpeg|max:5000',
-                    'quantity'=>'required',
+                'name' => 'required',
+                'description' => 'required',
+                'price' => 'required',
+                'image' => 'required|image|mimes:jpg,png,jpeg|max:5000',
+                'quantity' => 'required',
             ]);
-
+    
             if ($validator->fails()) {
                 return redirect()->back()
                     ->withErrors($validator)
                     ->withInput();
             }
-
-            if ($request->hasFile('image')) {
-                $file = $request->file('image');
-                $path = public_path('public/image');
-              
-
-            } else {
-                $fileName = 'noname.jpg';
-            }
-            
+    
+            // ... (the existing code for handling the image file)
+    
             $newFigure = new Figure();
             $newFigure->name = $request->name;
             $newFigure->description = $request->description;
             $newFigure->price = $request->price;
             $newFigure->image = $fileName;
             $newFigure->quantity = $request->quantity;
-            $newFigure->category = $request->category; 
-          
+            $newFigure->category = $request->category;
+    
             $newFigure->save();
-            return redirect()->route('figure.index')
-                ->with('success', 'Figure Add successfully.');
+    
+            return redirect()->route('figures.index')->with('success', 'Figure added successfully.');
         }
-        
     }
+    
     public function show($figure_id)
     {
-        $figure = Figure::find($figure_id);
-        return view('figure.show', ['figure' => $figure]);
+        $figures = Figure::find($figure_id);
+        return view('figures.show', ['figures' => $figures]);
     }
     public function edit($figure_id)
     {
         $categories = Category::all();
-        $figure = Figure::with('category')->find($figure_id);
-        return view('figure.edit', ['figure' => $figure, 'categories' => $categories]);
+        $figures = Figure::with('category')->find($figure_id);
+        return view('figures.edit', ['figures' => $figures, 'categories' => $categories]);
     }
     public function update(Request $request, $figure_id)
     {
@@ -223,24 +221,24 @@ class FigureController extends Controller
                 $file->move($path, $fileName);
             }
             
-            $figure = Figure::find($id);
-            if ($figure != null) {
-                $figure->name = $request->name;
-                $figure->description = $request->description;
-                $figure->price = $request->price;
-                $figure->image = $fileName;
-                $figure->quantity = $request->quantity;
-                $figure->category = $request->category;
+            $figures = Figure::find($id);
+            if ($figures != null) {
+                $figures->name = $request->name;
+                $figures->description = $request->description;
+                $figures->price = $request->price;
+                $figures->image = $fileName;
+                $figures->quantity = $request->quantity;
+                $figures->category = $request->category;
                
                 if ($fileName) {
-                    $figure->image = $fileName;
+                    $figures->image = $fileName;
                
                 }
-                $figure->save();
-                return redirect()->route('figure.index')
+                $figures->save();
+                return redirect()->route('figures.index')
                     ->with('success', 'Figure updated successfully');
             } else {
-                return redirect()->route('figure.index')
+                return redirect()->route('figures.index')
                     ->with('Error', 'figure not update');
 
             }
@@ -257,7 +255,7 @@ class FigureController extends Controller
         }
        
         $figure->delete();
-        return redirect()->route('figure.index')
+        return redirect()->route('figures.index')
             ->with('success', 'Figure deleted successfully');
     }
 

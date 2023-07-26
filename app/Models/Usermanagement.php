@@ -9,7 +9,7 @@ class Usermanagement extends Model
 {
     use HasFactory;
     protected $table='user';
-    public $primaryKey='id';
+    public $primaryKey='user_id';
     public $timestamps=false;
     protected $fillable = [
         'username', 

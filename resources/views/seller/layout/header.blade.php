@@ -12,11 +12,11 @@
     <header>
         <a href="" class="logo"><img src="img/logo.png"></a>
         <ul class="navigation">
-            <li><a href="{{ route('client.page.index') }}">Home</a></li>
-            <li><a href="{{ route('client.page.signin') }}">Cart</a></li>
-            <li><a href="{{ route('client.page.figure') }}">#</a></li>
+            <li><a href="{{ route('seller.page.index') }}">Home</a></li>
            
-            <li><a href="{{ route('client.page.signin') }}" target="_blank">Sign In</a></li>
+          
+            <li><a class="btn btn-success" href="{{ route('figures.create') }}"> Create New </a></li>
+            <li><a href="{{ route('figures.index') }}" target="_blank">Figure management</a></li>
         </ul>
         <div class="search">
             <input type="text" id="keyword" placeholder="Search">

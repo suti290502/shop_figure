@@ -19,6 +19,7 @@ class SigninController extends Controller
     {
         if($request->isMethod('POST')){
             $validator=validator::make($request->all(),[
+                'username'=>'required',
                 'email'=>'required|email|max:100',
                 'password'=>'required',
             ]);
@@ -29,7 +30,7 @@ class SigninController extends Controller
                 ->withInput();
             }
  
-            $credentials = $request->only('email', 'password');
+            $credentials = $request->only('username','email', 'password');
 
             if (Auth::attempt($credentials)) {
                 $user = Auth::user();
@@ -37,7 +38,7 @@ class SigninController extends Controller
 
                 if ($user->role== 1) {
                     $request->session()->put('user', Auth::user());
-                
+                    return redirect()->route('seller.page.index')->with('login','Login Successfully');
                 } elseif ($user->role == 2) {
                     // Xử lý cho role 2
                     $request->session()->put('user', Auth::user());

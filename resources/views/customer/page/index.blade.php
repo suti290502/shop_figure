@@ -14,6 +14,7 @@
         </div>
     </div>
 </div>
+
 <div class="container">
     <div class="content-container">
         <div class="movie-list-container">
@@ -28,92 +29,52 @@
                 <div class="movie-list">
                     @foreach ($home as $key => $value)
                     <div class="movie-list-item">
-                
-                        <a href="{{asset ('customer.figure.index')}}"><img class="movie-list-item-img" src="{{ url('public/image/'.$value->image)}}"></a>
+                        <a href="{{asset('figures.show')}}"><img class="movie-list-item-img" src="{{ url('public/image/'.$value->image)}}"></a>
                         <a><span class="movie-list-item-title">{{$value->name}}</span></a>
-                        <p class="movie-list-item-decs">{{$value->description}}</p><br>
-                        <button class="movie-list-item-button"><i class="fa-solid fa-cart-shopping"> <a href="{{ route('add_to_cart', $value->figure_id) }}"
-                            class="btn btn-primary btn-block text-center" role="button">Cart</a></i> </button>
+                        <p class="movie-list-item-desc">{{$value->description}}</p>
+                        <button class="movie-list-item-button"><i class="fa-solid fa-cart-shopping"></i> Buy</button>
                     </div>
                     @endforeach
                 </div>
-                <i class="fa-solid fa-chevron-right arrow"></i>
+                <i class="fa-solid fa-chevron-right arrow" id="slideRight"></i>
             </div>
+            
         </div>
         <div class="movie-list-container">
             <h1 class="movie-list-title">Figure Anime</h1>
             <div class="movie-list-wrapper">
                 <div class="movie-list">
-                    <div class="movie-list-item">
-                        <img class="movie-list-item-img" src="img/png-transparent-roronoa-zoro-figurine-one-piece-model-figure-banpresto-one-piece-cartoon-one-piece-action-figure.png" alt="">
-                        <span class="movie-list-item-title">Zoro</span>
-                        <p class="movie-list-item-decs">100$</p>
-                        <button class="movie-list-item-button"><i class="fa-solid fa-cart-shopping"></i> Buy</button>
-                    </div>
-                    <div class="movie-list-item">
-                        <img class="movie-list-item-img" src="img/51EjqPokgxL._AC_.jpg" alt="">
-                        <span class="movie-list-item-title">One Piece</span>
-                        <p class="movie-list-item-decs">Diagnosed with terminal lung cancer, a high school chemistry teacher resorts to cooking and selling methamphetamine to provide for his family.</p>
-                        <button class="movie-list-item-button"><i class="fa-solid fa-cart-shopping"></i> Buy</button>
-                    </div>
-                    <div class="movie-list-item">
-                        <img class="movie-list-item-img" src="img/green.png" alt="">
-                        <span class="movie-list-item-title">Green Lantern</span>
-                        <p class="movie-list-item-decs">Diagnosed with terminal lung cancer, a high school chemistry teacher resorts to cooking and selling methamphetamine to provide for his family.</p>
-                        <button class="movie-list-item-button"><i class="fa-solid fa-cart-shopping"></i> Buy</button>
-                    </div>
-                    <div class="movie-list-item">
-                        <img class="movie-list-item-img" src="img/brave.png" alt="">
-                        <span class="movie-list-item-title">Brave</span>
-                        <p class="movie-list-item-decs">Diagnosed with terminal lung cancer, a high school chemistry teacher resorts to cooking and selling methamphetamine to provide for his family.</p>
-                        <button class="movie-list-item-button"><i class="fa-solid fa-cart-shopping"></i> Buy</button>
-                    </div>
-                    <div class="movie-list-item">
-                        <img class="movie-list-item-img" src="img/taylor.png" alt="">
-                        <span class="movie-list-item-title"></span>
-                        <p class="movie-list-item-decs">Diagnosed with terminal lung cancer, a high school chemistry teacher resorts to cooking and selling methamphetamine to provide for his family.</p>
-                        <button class="movie-list-item-button"><i class="fa-solid fa-cart-shopping"></i> Buy</button>
-                    </div>
+                    @foreach ($home as $key => $value)
+                        @if ($value->category == '1')
+                            <div class="movie-list-item">
+                                <img class="movie-list-item-img"  src="{{ url('public/image/'.$value->image)}}">
+                                <span class="movie-list-item-title">{{ $value->name }}</span>
+                                <p class="movie-list-item-decs">{{ $value->description }}</p>
+                                <button class="movie-list-item-button"><i class="fa-solid fa-cart-shopping"></i> Buy</button>
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
-                <i class="fa-solid fa-chevron-right arrow"></i>
+                <i class="fa-solid fa-chevron-right arrow" id="slideRight"></i>
             </div>
         </div>
+        
         <div class="movie-list-container">
-            <h1 class="movie-list-title">Adventure</h1>
+            <h1 class="movie-list-title">Film Figure </h1>
             <div class="movie-list-wrapper">
                 <div class="movie-list">
-                    <div class="movie-list-item">
-                        <img class="movie-list-item-img" src="img/pale.png" alt="">
-                        <span class="movie-list-item-title">Pale Rider</span>
-                        <p class="movie-list-item-decs">Diagnosed with terminal lung cancer, a high school chemistry teacher resorts to cooking and selling methamphetamine to provide for his family.</p>
-                        <button class="movie-list-item-button"><i class="fa-solid fa-cart-shopping"></i> Buy</button>
-                    </div>
-                    <div class="movie-list-item">
-                        <img class="movie-list-item-img" src="img/300.png" alt="">
-                        <span class="movie-list-item-title">300: Rise Of An Empire</span>
-                        <p class="movie-list-item-decs">Diagnosed with terminal lung cancer, a high school chemistry teacher resorts to cooking and selling methamphetamine to provide for his family.</p>
-                        <button class="movie-list-item-button"><i class="fa-solid fa-cart-shopping"></i> Buy</button>
-                    </div>
-                    <div class="movie-list-item">
-                        <img class="movie-list-item-img" src="img/starwar.png" alt="">
-                        <span class="movie-list-item-title">Star War</span>
-                        <p class="movie-list-item-decs">Diagnosed with terminal lung cancer, a high school chemistry teacher resorts to cooking and selling methamphetamine to provide for his family.</p>
-                        <button class="movie-list-item-button"><i class="fa-solid fa-cart-shopping"></i> Buy</button>
-                    </div>
-                    <div class="movie-list-item">
-                        <img class="movie-list-item-img" src="img/london.png" alt="">
-                        <span class="movie-list-item-title">London Has Fallen</span>
-                        <p class="movie-list-item-decs">Diagnosed with terminal lung cancer, a high school chemistry teacher resorts to cooking and selling methamphetamine to provide for his family.</p>
-                        <button class="movie-list-item-button"><i class="fa-solid fa-cart-shopping"></i> Buy</button>
-                    </div>
-                    <div class="movie-list-item">
-                        <img class="movie-list-item-img" src="img/taylor.png" alt="">
-                        <span class="movie-list-item-title">Breaking Bad</span>
-                        <p class="movie-list-item-decs">Diagnosed with terminal lung cancer, a high school chemistry teacher resorts to cooking and selling methamphetamine to provide for his family.</p>
-                        <button class="movie-list-item-button"><i class="fa-solid fa-cart-shopping"></i> Buy</button>
-                    </div>
+                    @foreach ($home as $key => $value)
+                        @if ($value->category == '2')
+                            <div class="movie-list-item">
+                                <img class="movie-list-item-img"  src="{{ url('public/image/'.$value->image)}}">
+                                <span class="movie-list-item-title">{{ $value->name }}</span>
+                                <p class="movie-list-item-decs">{{ $value->description }}</p>
+                                <button class="movie-list-item-button"><i class="fa-solid fa-cart-shopping"></i> Buy</button>
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
-                <i class="fa-solid fa-chevron-right arrow"></i>
+                <i class="fa-solid fa-chevron-right arrow" id="slideRight"></i>
             </div>
         </div>
     </div>

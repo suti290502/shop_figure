@@ -20,7 +20,8 @@
                   <th scope="col">NAME</th>
                   <th scope="col">Description</th>
                   <th scope="col">PRICE</th>
-                  <th scope="col">Quantity</th>
+                  <th scope="col">CATEGORY</th>
+                  <th scope="col">QUANTITY</th>
                   <th scope='col'>OPTION</th>
                   <th scope="col">&nbsp;</th>
                 </tr>
@@ -35,8 +36,9 @@
                   </td>
                   <td class="tm-product-name">{{ $value->name }}</td>
                   <td class="description">{{ $value->description }}</td>
-
                   <td>{{ $value->price }}</td>
+                  <td>{{ $value->category }}</td>
+                  
                   <td >{{ $value->quantity }}</td>
                   <td>
                     <a href="{{ asset('figure/edit/'. $value->figure_id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span>Edit</a>

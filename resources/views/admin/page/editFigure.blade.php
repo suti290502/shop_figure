@@ -32,7 +32,7 @@
                                 <input type="text" class="form-control" name="name" value="{{ $figure->name }}"
                                         placeholder="Movie Name">
                                 <br>
-                               
+                
                                
                                 <label>Price</label>
                                 <input type="text" class="form-control" name="price" value="{{ $figure->price }}"

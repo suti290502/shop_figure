@@ -18,6 +18,9 @@
                   <th scope="col">NAME</th>
                  
                   <th scope='col'>EMAIL</th>
+                  <th scope='col'>ADDRESS</th>
+                  <th scope='col'>PHONE NUMBER</th>
+                  <th scope='col'>ROLE</th>
                   <th scope='col'>CREAT</th>
                   <th scope="col">OPTION</th>
                   <th scope="col">&nbsp;</th>
@@ -28,12 +31,15 @@
                 <tr>
                   <th scope="col">&nbsp;</th>
                   <td class="tm-product-name">{{ $value->username}}</td>
-                 
                   <td>{{ $value->email }}</td>
+                  <td>{{ $value->address }}</td>
+                  <td>{{ $value->phone_number }}</td>
+                  
+                  <td>{{ $value->role }}</td>
                   <td>{{ $value->created_at }}</td>
                   <td>
-                    <a href="{{ asset('users/edit/'. $value->id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span>Edit</a>
-                    <a href="{{ asset('users/delete/'. $value->id) }}" onclick="return confirm('You sure to delete it?')" class="tm-product-delete-link">
+                    <a href="{{ asset('user/edit/'. $value->user_id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span>Edit</a>
+                    <a href="{{ asset('user/delete/'. $value->user_id) }}" onclick="return confirm('You sure to delete it?')" class="tm-product-delete-link">
                       <i class="far fa-trash-alt tm-product-delete-icon"></i>
                     </a>
                   </td>

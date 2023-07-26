@@ -1,4 +1,4 @@
-@extends('figure.layout.master')
+@extends('figures.layout.master')
 
 @section('content')
 
@@ -8,7 +8,7 @@
 <h2> Show Figure</h2>
 </div>
 <div class="pull-right">
-<a class="btn btn-primary" href="{{ route('figure.index') }}"> Back</a>
+<a class="btn btn-primary" href="{{ route('figures.index') }}"> Back</a>
 
 </div>
 </div>

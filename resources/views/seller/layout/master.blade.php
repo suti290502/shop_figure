@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    @include('admin.layout.header')
+    @include('seller.layout.header')
 </head>
 
 <body id="page-top">
@@ -10,26 +10,14 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-           
-        <!-- End of Sidebar -->
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-                <!-- Topbar -->
-                   
-                <!-- End of Topbar -->
             <div>
                 <!-- Begin Page Content -->
                     @yield('content')            
                 <!-- /.container-fluid -->
-            </div>
-            
-            <div>
                 <!-- Footer -->
-                @include('admin.layout.footer')
+                    @include('seller.layout.footer')
                 <!-- End of Footer -->
             </div>
         </div>
@@ -37,14 +25,6 @@
 
     </div>
     <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-        @include('admin.layout.logout')
 </body>
-@include('admin.layout.js')
+@include('seller.layout.js')
 </html>
