@@ -30,7 +30,7 @@ use App\Http\Controllers\SignupController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('hompage');
 });
 
 Route::group(['prefix'=>'index'], function(){
