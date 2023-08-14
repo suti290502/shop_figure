@@ -6,7 +6,7 @@
     <div class="content">
      
       
-        <h1>Search Results</h1>
+        <h1>Search Results3</h1>
 
         @if ($figures->isEmpty())
             <p>No results found.</p>

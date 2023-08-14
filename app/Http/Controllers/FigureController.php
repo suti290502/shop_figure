@@ -30,9 +30,6 @@ class FigureController extends Controller
                     'price'=>'required',
                     'image'=>'required|image|mimes:jpg,png,jpeg|max:5000',
                     'quantity'=>'required',
-                    
-                   
-                    
                 ]);
     
                 if($validator->fails()){
@@ -48,8 +45,6 @@ class FigureController extends Controller
                 $figure->price=$request->price;
                 $figure->quantity=$request->quantity;
                
-                
-                
                 if($request->file('image')){
                     $file=$request->file('image');
                     $filename=date('YmdHi').$file->getClientOriginalName();
@@ -69,7 +64,7 @@ class FigureController extends Controller
             $data['figure']=Figure::find($figure_id);
             return view('admin.page.editFigure',$data,compact('categories'));
         }
-    
+
         public function postEditFigure(Request $request,$figure_id){
             if($request->isMethod('POST')){
                 $validator=Validator::make($request->all(),[
@@ -77,18 +72,14 @@ class FigureController extends Controller
                     'description'=>'required',
                     'price'=>'required',
                     'image'=>'required|image|mimes:jpg,png,jpeg|max:5000',
-                    'quantity'=>'required',
-                    
-                    
-                    
+                    'quantity'=>'required',     
+                   
                 ]);
-    
                 if($validator->fails()){
                     return redirect()->back()
                     ->withErrors($validator)
                     ->withInput();
                 }
-    
                 $figure=Figure::find($figure_id);
                 $figure->category=$request->category_id;
                 $figure->name=$request->name;
@@ -96,8 +87,6 @@ class FigureController extends Controller
                 $figure->price=$request->price;
                 $figure->quantity=$request->quantity;
                
-                
-                
                 if($request->file('image')){
                     $file=$request->file('image');
                     $filename=date('YmdHi').$file->getClientOriginalName();
@@ -126,7 +115,7 @@ class FigureController extends Controller
     {
         $keyword = $request->input('keyword');
 
-        $figures = Figure::where('name', 'like', '%' . $keyword . '%')
+        $figures = Figure::where('category', 'like', '%' . $keyword . '%')
             ->orWhere('description', 'like', '%' . $keyword . '%')
             ->get();
 
@@ -143,9 +132,9 @@ class FigureController extends Controller
 
     public function index()
     {
-        $figures = Figure::latest()->paginate(5);
+        $figures = Figure::latest()->paginate(10);
         return view('figures.index', compact('figures'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
     public function create()
     {
@@ -187,9 +176,16 @@ class FigureController extends Controller
     
     public function show($figure_id)
     {
-        $figures = Figure::find($figure_id);
-        return view('figures.show', ['figures' => $figures]);
+        $figure = Figure::find($figure_id);
+
+        if (!$figure) {
+            abort(404); // Display a 404 error page if the figure is not found.
+        }
+
+        return view('figures.show', ['figure' => $figure]);
     }
+   
+    
     public function edit($figure_id)
     {
         $categories = Category::all();

@@ -3,65 +3,60 @@
 @section('content')
 
 <div class="row">
-<div class="col-lg-12 margin-tb">
-<div class="pull-left">
-<h2> Show Figure</h2>
-</div>
-<div class="pull-right">
-<a class="btn btn-primary" href="{{ route('figures.index') }}"> Back</a>
-
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col-xs-12 col-sm-12 col-md-12">
-<div class="form-group">
-<strong>Name:</strong>
-
-{{ $figure->name }}
-
-</div>
-</div>
-<div class="col-xs-12 col-sm-12 col-md-12">
-    <div class="form-group">
-    <strong>Description:</strong>
-    {{ $figure->description }}
-    </div>
-</div>
-<div class="col-xs-12 col-sm-12 col-md-12">
-    <div class="form-group">
-
-        <strong>Image:</strong>
-        
-        <img src="{{ asset('image/figure/'.$figure->image) }}" alt="" border=3 height=150 width=150>
-        
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-left">
+            <h2>Show Figure</h2>
+        </div>
+        <div class="pull-right">
+            <a class="btn btn-primary" href="{{ route('customer.page.index') }}">Back</a> 
+             <a class="btn btn-primary" href="{{ route('add_to_cart', $figure->figure_id) }}"
+                class="btn btn-primary btn-block text-center" role="button">Add to Cart</a></i>
         </div>
     </div>
-   
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-        <strong>Category:</strong>
-        {{ $figure->category->name }}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-        <strong>Price:</strong>
-        {{ $figure->price }}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-        <strong>Quantity:</strong>
-        {{ $figure->quantity }}
-        </div>
-    </div>
-    </div>
-    @endsection
-    
-    <style>
-    div{
-        color: white;
-        font-size: 20px;
+</div>
+
+<!-- Center the table using a container -->
+<div class="d-flex justify-content-center">
+    <table class="table table-bordered">
+        <tr>
+            <th>Name</th>
+            <td>{{ $figure->name }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ $figure->description }}</td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td>
+                <img src="{{ url('public/image/'.$figure->image)}}" >
+            </td>
+        </tr>
+        <tr>
+            <th>Category</th>
+            <td>{{ $figure->category }}</td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td>{{ $figure->price }}</td>
+        </tr>
+        <tr>
+            <th>Quantity</th>
+            <td>{{ $figure->quantity }}</td>
+        </tr>
+    </table>
+</div>
+
+@endsection
+
+<style>
+    div {
+        color: rgb(8, 1, 1);
+        font-size: 50px;
     }
-    </style>        
+    img {
+        width: 10%;
+        height: 10%;
+    }
+</style>
+

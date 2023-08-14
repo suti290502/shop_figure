@@ -28,7 +28,7 @@
                 <div class="movie-list">
                     @foreach ($homepage as $key => $value)
                     <div class="movie-list-item">
-                        <a href="{{asset('figures.show')}}"><img class="movie-list-item-img" src="{{ url('public/image/'.$value->image)}}"></a>
+                        <a href="{{ route('figures.show', ['figure_id' => $value->figure_id]) }}">View Figure <img class="movie-list-item-img" src="{{ url('public/image/'.$value->image)}}"></a>
                         <a><span class="movie-list-item-title">{{$value->name}}</span></a>
                         <p class="movie-list-item-desc">{{$value->description}}</p>
                         <button class="movie-list-item-button"  href="{{ route('client.page.signin') }}"><i class="fa-solid fa-cart-shopping"></i> Buy</button>

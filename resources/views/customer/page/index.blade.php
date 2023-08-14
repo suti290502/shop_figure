@@ -29,10 +29,11 @@
                 <div class="movie-list">
                     @foreach ($home as $key => $value)
                     <div class="movie-list-item">
-                        <a href="{{asset('figures.show')}}"><img class="movie-list-item-img" src="{{ url('public/image/'.$value->image)}}"></a>
+                        <a href="{{ route('figures.show', ['figure_id' => $value->figure_id]) }}">View Figure <img class="movie-list-item-img" src="{{ url('public/image/'.$value->image)}}"></a>
                         <a><span class="movie-list-item-title">{{$value->name}}</span></a>
                         <p class="movie-list-item-desc">{{$value->description}}</p>
-                        <button class="movie-list-item-button"><i class="fa-solid fa-cart-shopping"></i> Buy</button>
+                        <button class="movie-list-item-button"><i class="fa-solid fa-cart-shopping"> <a href="{{ route('add_to_cart', $value->figure_id) }}"
+                            class="btn btn-primary btn-block text-center" role="button">Buy</a></i> </button>
                     </div>
                     @endforeach
                 </div>

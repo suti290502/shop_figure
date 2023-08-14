@@ -34,7 +34,7 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix'=>'index'], function(){
-    Route::get('/',[BackendController::class,'index'])->name('admin.all.index');
+    Route::get('/',[BackendController::class,'index'])->name('admin.all.index') ;
 });
 
 Route::group(['prefix'=>'category'], function(){
@@ -93,7 +93,7 @@ Route::group(['prefix'=>'tvshows'], function(){
 Route::group(['prefix'=>'figures'], function(){
     Route::get('/',[FigureController::class,'figures'])->name('client.page.figure');
     Route::get('/search', [FigureController::class, 'search'])->name('search');
-});
+
 
 
 Route::get('/figures/index', [FigureController::class, 'index'])->name('figures.index');
@@ -102,8 +102,8 @@ Route::get('/figures/delete{figure_id}', [FigureController::class, 'destroy'])->
 Route::get('/figures/edit{figure_id}', [FigureController::class, 'edit'])->name('figures.edit');
 Route::post('/figures/update{figure_id}', [FigureController::class, 'update'])->name('figures.update');
 Route::get('/figures/show{figure_id}', [FigureController::class, 'show'])->name('figures.show');
-Route::post('/figures/store', [FigureController::class, 'store'])->name('figures.store');
-
+Route::post('/figures/store', [FigureController::class, 'store'])->name('figures.store');;
+});
 
 Route::group(['prefix'=>'new'], function(){
     Route::get('/',[NewController::class,'new'])->name('client.page.new');
